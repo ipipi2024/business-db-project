@@ -42,8 +42,8 @@ CREATE TABLE raw_data (
     contact_name VARCHAR(255),
     contact_title VARCHAR(255),
 
-    employee_first_name VARCHAR(100),
     employee_last_name VARCHAR(100),
+    employee_first_name VARCHAR(100),
     employee_title VARCHAR(100),
 
     category_name VARCHAR(100),
