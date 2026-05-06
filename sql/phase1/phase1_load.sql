@@ -68,14 +68,19 @@ LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
 -- =====================================================
--- Verification queries for documentation/screenshots
+-- Create Suppliers table
+-- One row represents one supplier
 -- =====================================================
 
-SELECT COUNT(*) AS total_rows
+DROP TABLE IF EXISTS Suppliers;
+
+CREATE TABLE Suppliers AS
+SELECT DISTINCT
+    supplier_id,
+    suppliers_company_name,
+    suppliers_contact_name,
+    suppliers_contact_title
 FROM raw_data;
 
-SELECT *
-FROM raw_data
-LIMIT 10;
 
-DESCRIBE raw_data;
+
