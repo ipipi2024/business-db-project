@@ -1,0 +1,66 @@
+erDiagram
+    CUSTOMERS ||--o{ ORDERS : places
+    EMPLOYEES ||--o{ ORDERS : handles
+    ORDERS ||--o{ ORDER_DETAILS : contains
+    PRODUCTS ||--o{ ORDER_DETAILS : included_in
+    SUPPLIERS ||--o{ PRODUCTS : supplies
+    CATEGORIES ||--o{ PRODUCTS : classifies
+
+    CUSTOMERS {
+        int customer_id PK
+        varchar company_name
+        varchar contact_name
+        varchar contact_title
+    }
+
+    EMPLOYEES {
+        int employee_id PK
+        varchar employee_first_name
+        varchar employee_last_name
+        varchar employee_title
+    }
+
+    SUPPLIERS {
+        int supplier_id PK
+        varchar suppliers_company_name
+        varchar suppliers_contact_name
+        varchar suppliers_contact_title
+    }
+
+    CATEGORIES {
+        int category_id PK
+        varchar category_name
+    }
+
+    PRODUCTS {
+        int product_id PK
+        varchar product_name
+        int supplier_id FK
+        int category_id FK
+        varchar quantity_per_unit
+        decimal catalog_unit_price
+        int units_in_stock
+        int units_on_order
+        int reorder_level
+        boolean discontinued
+    }
+
+    ORDERS {
+        int order_id PK
+        int customer_id FK
+        int employee_id FK
+        date order_date
+        date required_date
+        date shipped_date
+        int ship_via
+        decimal freight
+    }
+
+    ORDER_DETAILS {
+        int item_id PK
+        int order_id FK
+        int product_id FK
+        decimal order_unit_price
+        int quantity
+        decimal discount
+    }
