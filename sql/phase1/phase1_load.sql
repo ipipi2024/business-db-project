@@ -14,6 +14,7 @@ USE company_db;
 
 DROP TABLE IF EXISTS raw_data;
 
+
 CREATE TABLE raw_data (
     order_id INT,
     customer_id VARCHAR(50),
@@ -25,16 +26,7 @@ CREATE TABLE raw_data (
     freight DECIMAL(10,2),
 
     product_id INT,
-    product_name VARCHAR(255),
-    supplier_id INT,
-    category_id INT,
-    quantity_per_unit VARCHAR(100),
-    unit_price DECIMAL(10,2),
-    units_in_stock INT,
-    units_on_order INT,
-    reorder_level INT,
-    discontinued BOOLEAN,
-
+    order_unit_price DECIMAL(10,2),
     quantity INT,
     discount DECIMAL(5,2),
 
@@ -46,13 +38,23 @@ CREATE TABLE raw_data (
     employee_first_name VARCHAR(100),
     employee_title VARCHAR(100),
 
-    category_name VARCHAR(100),
-    category_description TEXT,
+    product_name VARCHAR(255),
+    supplier_id INT,
+    category_id INT,
+    quantity_per_unit VARCHAR(100),
+    catalog_unit_price DECIMAL(10,2),
+    units_in_stock INT,
+    units_on_order INT,
+    reorder_level INT,
+    discontinued BOOLEAN,
 
-    supplier_company_name VARCHAR(255),
-    supplier_contact_name VARCHAR(255),
-    supplier_contact_title VARCHAR(255)
+    category_name VARCHAR(100),
+
+    suppliers_company_name VARCHAR(255),
+    suppliers_contact_name VARCHAR(255),
+    suppliers_contact_title VARCHAR(255)
 );
+
 
 -- =====================================================
 -- Load cleaned CSV file into raw_data
