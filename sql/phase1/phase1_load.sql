@@ -83,4 +83,18 @@ SELECT DISTINCT
 FROM raw_data;
 
 
+-- =====================================================
+-- Create Categories table
+-- One row represents one product category
+-- =====================================================
+
+DROP TABLE IF EXISTS Categories;
+
+CREATE TABLE Categories AS
+SELECT DISTINCT
+    category_id,
+    category_name
+FROM raw_data;
+
+
 
