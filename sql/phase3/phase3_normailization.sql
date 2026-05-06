@@ -13,3 +13,19 @@ SELECT DISTINCT
     employee_last_name,
     employee_title
 FROM raw_data;
+
+
+CREATE TABLE Products AS
+SELECT DISTINCT
+    product_id,
+    product_name,
+    supplier_id,
+    category_id,
+    quantity_per_unit,
+    units_in_stock,
+    units_on_order,
+    reorder_level,
+    discontinued
+FROM raw_data;
+
+
