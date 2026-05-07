@@ -6,6 +6,8 @@ SELECT DISTINCT
     contact_title
 FROM raw_data;
 
+SELECT * FROM Customers;
+
 CREATE TABLE Employees AS
 SELECT DISTINCT
     employee_id,
@@ -13,6 +15,8 @@ SELECT DISTINCT
     employee_last_name,
     employee_title
 FROM raw_data;
+
+SELECT * FROM Employees;
 
 
 DROP TABLE IF EXISTS Products;
@@ -31,6 +35,8 @@ SELECT
 FROM raw_data
 GROUP BY product_id;
 
+SELECT * FROM Products;
+
 CREATE TABLE Orders AS
 SELECT DISTINCT
     order_id,
@@ -42,6 +48,8 @@ SELECT DISTINCT
     ship_via,
     freight
 FROM raw_data;
+
+SELECT * FROM Orders;
 
 -- =====================================================
 -- Create OrderDetails table
@@ -60,6 +68,8 @@ SELECT DISTINCT
     discount
 FROM raw_data;
 
+SELECT * FROM OrderDetails;
+
 DROP TABLE IF EXISTS Suppliers;
 
 CREATE TABLE Suppliers AS
@@ -70,6 +80,8 @@ SELECT DISTINCT
     supplier_contact_title
 FROM raw_data;
 
+SELECT * FROM Suppliers;
+
 DROP TABLE IF EXISTS Categories;
 
 CREATE TABLE Categories AS
@@ -78,7 +90,7 @@ SELECT DISTINCT
     category_name
 FROM raw_data;
 
-
+SELECT * FROM Categories;
 
 
 
