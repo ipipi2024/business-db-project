@@ -15,18 +15,21 @@ SELECT DISTINCT
 FROM raw_data;
 
 
+DROP TABLE IF EXISTS Products;
+
 CREATE TABLE Products AS
-SELECT DISTINCT
+SELECT
     product_id,
-    product_name,
-    supplier_id,
-    category_id,
-    quantity_per_unit,
-    units_in_stock,
-    units_on_order,
-    reorder_level,
-    discontinued
-FROM raw_data;
+    MAX(product_name) AS product_name,
+    MAX(supplier_id) AS supplier_id,
+    MAX(category_id) AS category_id,
+    MAX(quantity_per_unit) AS quantity_per_unit,
+    MAX(units_in_stock) AS units_in_stock,
+    MAX(units_on_order) AS units_on_order,
+    MAX(reorder_level) AS reorder_level,
+    MAX(discontinued) AS discontinued
+FROM raw_data
+GROUP BY product_id;
 
 CREATE TABLE Orders AS
 SELECT DISTINCT
