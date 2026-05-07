@@ -60,6 +60,25 @@ SELECT DISTINCT
     discount
 FROM raw_data;
 
+DROP TABLE IF EXISTS Suppliers;
+
+CREATE TABLE Suppliers AS
+SELECT DISTINCT
+    supplier_id,
+    supplier_company_name,
+    supplier_contact_name,
+    supplier_contact_title
+FROM raw_data;
+
+DROP TABLE IF EXISTS Categories;
+
+CREATE TABLE Categories AS
+SELECT DISTINCT
+    category_id,
+    category_name
+FROM raw_data;
+
+
 
 
 
