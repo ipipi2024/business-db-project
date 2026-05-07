@@ -3,6 +3,7 @@
 -- Project: Business Database from Scratch
 -- =====================================================
 
+--creates a new database called company_db
 DROP DATABASE IF EXISTS company_db;
 CREATE DATABASE company_db;
 USE company_db;
@@ -13,11 +14,9 @@ USE company_db;
 -- =====================================================
 
 DROP TABLE IF EXISTS raw_data;
-
-
 CREATE TABLE raw_data (
     order_id INT,
-    customer_id VARCHAR(50),
+    customer_id CHAR(5),
     employee_id INT,
     order_date DATE,
     required_date DATE,
@@ -50,9 +49,9 @@ CREATE TABLE raw_data (
 
     category_name VARCHAR(100),
 
-    suppliers_company_name VARCHAR(255),
-    suppliers_contact_name VARCHAR(255),
-    suppliers_contact_title VARCHAR(255)
+    supplier_company_name VARCHAR(255),
+    supplier_contact_name VARCHAR(255),
+    supplier_contact_title VARCHAR(255)
 );
 
 
