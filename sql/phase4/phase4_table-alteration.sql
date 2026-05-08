@@ -172,3 +172,57 @@ DESCRIBE Products;
 
 -- Verify the primary key and foreign key constraints were applied correctly on the Products table
 SHOW KEYS FROM Products;
+
+-- -------------------------------------------------------
+
+-- Inspect current structure of the Orders table
+-- DESCRIBE Orders;
+
+-- Check for duplicate order_id values before adding the primary key
+-- SELECT order_id, COUNT(*) AS count
+-- FROM Orders
+-- GROUP BY order_id
+-- HAVING COUNT(*) > 1;
+
+-- Check for NULL order_id values before applying NOT NULL constraint
+-- SELECT *
+-- FROM Orders
+-- WHERE order_id IS NULL;
+
+-- Check for NULL customer_id or employee_id before applying NOT NULL constraints
+-- SELECT *
+-- FROM Orders
+-- WHERE customer_id IS NULL
+--    OR employee_id IS NULL;
+
+-- Check for orphaned customer_id values with no matching Customers record
+-- SELECT o.*
+-- FROM Orders o
+-- LEFT JOIN Customers c
+--     ON o.customer_id = c.customer_id
+-- WHERE c.customer_id IS NULL;
+
+-- Check for orphaned employee_id values with no matching Employees record
+-- SELECT o.*
+-- FROM Orders o
+-- LEFT JOIN Employees e
+--     ON o.employee_id = e.employee_id
+-- WHERE e.employee_id IS NULL;
+
+-- Apply constraints: enforce NOT NULL, set primary key, and add foreign keys to Customers and Employees
+-- ALTER TABLE Orders
+-- MODIFY order_id INT NOT NULL,
+-- MODIFY customer_id CHAR(5) NOT NULL,
+-- MODIFY employee_id INT NOT NULL,
+-- MODIFY order_date DATE NOT NULL,
+-- ADD PRIMARY KEY (order_id),
+-- ADD CONSTRAINT fk_orders_customer
+--     FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
+-- ADD CONSTRAINT fk_orders_employee
+--     FOREIGN KEY (employee_id) REFERENCES Employees(employee_id);
+
+-- Confirm column data types and NOT NULL constraints were applied correctly
+-- DESCRIBE Orders;
+
+-- Verify the primary key and foreign key constraints were applied correctly on the Orders table
+-- SHOW KEYS FROM Orders;

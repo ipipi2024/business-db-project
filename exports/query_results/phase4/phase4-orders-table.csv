@@ -1,0 +1,9 @@
+Field,Type,Null,Key,Default,Extra
+order_id,int,NO,PRI,NULL,
+customer_id,char(5),NO,MUL,NULL,
+employee_id,int,NO,MUL,NULL,
+order_date,date,NO,,NULL,
+required_date,date,YES,,NULL,
+shipped_date,date,YES,,NULL,
+ship_via,int,YES,,NULL,
+freight,"decimal(10,2)",YES,,NULL,
