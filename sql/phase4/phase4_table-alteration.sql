@@ -24,3 +24,36 @@ ALTER TABLE Customers
 MODIFY customer_id CHAR(5) NOT NULL,
 MODIFY company_name VARCHAR(255) NOT NULL,
 ADD PRIMARY KEY (customer_id);
+
+-- -------------------------------------------------------
+
+-- Inspect current structure of the Employees table
+DESCRIBE Employees;
+
+-- Check for duplicate employee_id values before adding the primary key
+SELECT employee_id, COUNT(*) AS count
+FROM Employees
+GROUP BY employee_id
+HAVING COUNT(*) > 1;
+
+-- Check for NULL employee_id values before applying NOT NULL constraint
+SELECT *
+FROM Employees
+WHERE employee_id IS NULL;
+
+-- Check for NULL employee_first_name values before applying NOT NULL constraint
+SELECT *
+FROM Employees
+WHERE employee_first_name IS NULL;
+
+-- Check for NULL employee_last_name values before applying NOT NULL constraint
+SELECT *
+FROM Employees
+WHERE employee_last_name IS NULL;
+
+-- Apply constraints: enforce NOT NULL on key columns and set employee_id as primary key
+ALTER TABLE Employees
+MODIFY employee_id INT NOT NULL,
+MODIFY employee_first_name VARCHAR(255) NOT NULL,
+MODIFY employee_last_name VARCHAR(255) NOT NULL,
+ADD PRIMARY KEY (employee_id);
