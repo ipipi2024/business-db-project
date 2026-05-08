@@ -1,0 +1,3 @@
+Field,Type,Null,Key,Default,Extra
+category_id,int,NO,PRI,NULL,
+category_name,varchar(100),NO,UNI,NULL,

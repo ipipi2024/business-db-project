@@ -84,3 +84,36 @@ ALTER TABLE Suppliers
 MODIFY supplier_id INT NOT NULL,
 MODIFY supplier_company_name VARCHAR(255) NOT NULL,
 ADD PRIMARY KEY (supplier_id);
+
+-- -------------------------------------------------------
+
+-- Inspect current structure of the Categories table
+DESCRIBE Categories;
+
+-- Check for duplicate category_id values before adding the primary key
+SELECT category_id, COUNT(*) AS count
+FROM Categories
+GROUP BY category_id
+HAVING COUNT(*) > 1;
+
+-- Check for NULL category_id values before applying NOT NULL constraint
+SELECT *
+FROM Categories
+WHERE category_id IS NULL;
+
+-- Check for NULL category_name values before applying NOT NULL constraint
+SELECT *
+FROM Categories
+WHERE category_name IS NULL;
+
+-- Apply constraints: enforce NOT NULL on key columns and set category_id as primary key
+ALTER TABLE Categories
+MODIFY category_id INT NOT NULL,
+MODIFY category_name VARCHAR(255) NOT NULL,
+ADD PRIMARY KEY (category_id);
+
+-- Confirm column data types and NOT NULL constraints were applied correctly
+DESCRIBE Categories;
+
+-- Verify the primary key constraint was applied correctly on the Categories table
+SHOW KEYS FROM Categories;
