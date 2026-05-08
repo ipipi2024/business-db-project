@@ -57,3 +57,30 @@ MODIFY employee_id INT NOT NULL,
 MODIFY employee_first_name VARCHAR(255) NOT NULL,
 MODIFY employee_last_name VARCHAR(255) NOT NULL,
 ADD PRIMARY KEY (employee_id);
+
+-- -------------------------------------------------------
+
+-- Inspect current structure of the Suppliers table
+DESCRIBE Suppliers;
+
+-- Check for duplicate supplier_id values before adding the primary key
+SELECT supplier_id, COUNT(*) AS count
+FROM Suppliers
+GROUP BY supplier_id
+HAVING COUNT(*) > 1;
+
+-- Check for NULL supplier_id values before applying NOT NULL constraint
+SELECT *
+FROM Suppliers
+WHERE supplier_id IS NULL;
+
+-- Check for NULL supplier_company_name values before applying NOT NULL constraint
+SELECT *
+FROM Suppliers
+WHERE supplier_company_name IS NULL;
+
+-- Apply constraints: enforce NOT NULL on key columns and set supplier_id as primary key
+ALTER TABLE Suppliers
+MODIFY supplier_id INT NOT NULL,
+MODIFY supplier_company_name VARCHAR(255) NOT NULL,
+ADD PRIMARY KEY (supplier_id);

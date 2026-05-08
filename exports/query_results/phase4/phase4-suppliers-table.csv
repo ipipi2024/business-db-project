@@ -1,0 +1,5 @@
+Field,Type,Null,Key,Default,Extra
+supplier_id,int,NO,PRI,NULL,
+supplier_company_name,varchar(255),NO,,NULL,
+supplier_contact_name,varchar(255),YES,,NULL,
+supplier_contact_title,varchar(255),YES,,NULL,
