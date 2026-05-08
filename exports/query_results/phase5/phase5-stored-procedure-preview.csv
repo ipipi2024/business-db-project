@@ -1,13 +1,13 @@
 product_id,product_name,units_in_stock
 5,"Chef Anton's Gumbo Mix",0
-8,"Northwoods Cranberry Sauce",6
 17,"Alice Mutton",0
-21,"Sir Rodney's Scones",3
 29,"Thüringer Rostbratwurst",0
 31,"Gorgonzola Telino",0
-32,"Mascarpone Fabioli",9
-45,"Rogede sild",5
 53,"Perth Pasties",0
+21,"Sir Rodney's Scones",3
 66,"Louisiana Hot Spiced Okra",4
-68,"Scottish Longbreads",6
 74,"Longlife Tofu",4
+45,"Rogede sild",5
+8,"Northwoods Cranberry Sauce",6
+68,"Scottish Longbreads",6
+32,"Mascarpone Fabioli",9

@@ -10,7 +10,8 @@ SELECT
     product_name,
     units_in_stock
 FROM Products
-WHERE units_in_stock < 10;
+WHERE units_in_stock < 10
+ORDER BY units_in_stock ASC;
 
 -- Create a stored procedure that returns products below a specified stock threshold
 DELIMITER //
