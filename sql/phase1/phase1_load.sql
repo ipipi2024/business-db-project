@@ -3,7 +3,7 @@
 -- Project: Business Database from Scratch
 -- =====================================================
 
---creates a new database called company_db
+-- creates a new database called company_db
 DROP DATABASE IF EXISTS company_db;
 CREATE DATABASE company_db;
 USE company_db;
@@ -59,7 +59,7 @@ CREATE TABLE raw_data (
 -- Load cleaned CSV file into raw_data
 -- =====================================================
 
-LOAD DATA LOCAL INFILE 'C:/Users/earthlian/Desktop/business-db-project/data/cleaned/CompanyData_cleaned.csv'
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/CompanyData_cleaned.csv'
 INTO TABLE raw_data
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
@@ -76,9 +76,9 @@ DROP TABLE IF EXISTS Suppliers;
 CREATE TABLE Suppliers AS
 SELECT DISTINCT
     supplier_id,
-    suppliers_company_name,
-    suppliers_contact_name,
-    suppliers_contact_title
+    supplier_company_name,
+    supplier_contact_name,
+    supplier_contact_title
 FROM raw_data;
 
 
