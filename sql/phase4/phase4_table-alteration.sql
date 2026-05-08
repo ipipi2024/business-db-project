@@ -121,39 +121,39 @@ SHOW KEYS FROM Categories;
 -- -------------------------------------------------------
 
 -- Inspect current structure of the Products table
--- DESCRIBE Products;
+DESCRIBE Products;
 
 -- Check for duplicate product_id values before adding the primary key
--- SELECT product_id, COUNT(*) AS count
--- FROM Products
--- GROUP BY product_id
--- HAVING COUNT(*) > 1;
+SELECT product_id, COUNT(*) AS count
+FROM Products
+GROUP BY product_id
+HAVING COUNT(*) > 1;
 
 -- Check for NULL product_id values before applying NOT NULL constraint
--- SELECT *
--- FROM Products
--- WHERE product_id IS NULL;
+SELECT *
+FROM Products
+WHERE product_id IS NULL;
 
 -- Check for NULL product_name, supplier_id, or category_id before applying NOT NULL constraints
--- SELECT *
--- FROM Products
--- WHERE product_name IS NULL
---    OR supplier_id IS NULL
---    OR category_id IS NULL;
+SELECT *
+FROM Products
+WHERE product_name IS NULL
+   OR supplier_id IS NULL
+   OR category_id IS NULL;
 
 -- Check for orphaned supplier_id values with no matching Suppliers record
--- SELECT p.*
--- FROM Products p
--- LEFT JOIN Suppliers s
---     ON p.supplier_id = s.supplier_id
--- WHERE s.supplier_id IS NULL;
+SELECT p.*
+FROM Products p
+LEFT JOIN Suppliers s
+    ON p.supplier_id = s.supplier_id
+WHERE s.supplier_id IS NULL;
 
 -- Check for orphaned category_id values with no matching Categories record
--- SELECT p.*
--- FROM Products p
--- LEFT JOIN Categories c
---     ON p.category_id = c.category_id
--- WHERE c.category_id IS NULL;
+SELECT p.*
+FROM Products p
+LEFT JOIN Categories c
+    ON p.category_id = c.category_id
+WHERE c.category_id IS NULL;
 
 -- Apply constraints: enforce NOT NULL, set primary key, and add foreign keys to Suppliers and Categories
 ALTER TABLE Products
@@ -176,53 +176,103 @@ SHOW KEYS FROM Products;
 -- -------------------------------------------------------
 
 -- Inspect current structure of the Orders table
--- DESCRIBE Orders;
+DESCRIBE Orders;
 
 -- Check for duplicate order_id values before adding the primary key
--- SELECT order_id, COUNT(*) AS count
--- FROM Orders
--- GROUP BY order_id
--- HAVING COUNT(*) > 1;
+SELECT order_id, COUNT(*) AS count
+FROM Orders
+GROUP BY order_id
+HAVING COUNT(*) > 1;
 
 -- Check for NULL order_id values before applying NOT NULL constraint
--- SELECT *
--- FROM Orders
--- WHERE order_id IS NULL;
+SELECT *
+FROM Orders
+WHERE order_id IS NULL;
 
 -- Check for NULL customer_id or employee_id before applying NOT NULL constraints
--- SELECT *
--- FROM Orders
--- WHERE customer_id IS NULL
---    OR employee_id IS NULL;
+SELECT *
+FROM Orders
+WHERE customer_id IS NULL
+   OR employee_id IS NULL;
 
 -- Check for orphaned customer_id values with no matching Customers record
--- SELECT o.*
--- FROM Orders o
--- LEFT JOIN Customers c
---     ON o.customer_id = c.customer_id
--- WHERE c.customer_id IS NULL;
+SELECT o.*
+FROM Orders o
+LEFT JOIN Customers c
+    ON o.customer_id = c.customer_id
+WHERE c.customer_id IS NULL;
 
 -- Check for orphaned employee_id values with no matching Employees record
--- SELECT o.*
--- FROM Orders o
--- LEFT JOIN Employees e
---     ON o.employee_id = e.employee_id
--- WHERE e.employee_id IS NULL;
+SELECT o.*
+FROM Orders o
+LEFT JOIN Employees e
+    ON o.employee_id = e.employee_id
+WHERE e.employee_id IS NULL;
 
 -- Apply constraints: enforce NOT NULL, set primary key, and add foreign keys to Customers and Employees
--- ALTER TABLE Orders
--- MODIFY order_id INT NOT NULL,
--- MODIFY customer_id CHAR(5) NOT NULL,
--- MODIFY employee_id INT NOT NULL,
--- MODIFY order_date DATE NOT NULL,
--- ADD PRIMARY KEY (order_id),
--- ADD CONSTRAINT fk_orders_customer
---     FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
--- ADD CONSTRAINT fk_orders_employee
---     FOREIGN KEY (employee_id) REFERENCES Employees(employee_id);
+ALTER TABLE Orders
+MODIFY order_id INT NOT NULL,
+MODIFY customer_id CHAR(5) NOT NULL,
+MODIFY employee_id INT NOT NULL,
+MODIFY order_date DATE NOT NULL,
+ADD PRIMARY KEY (order_id),
+ADD CONSTRAINT fk_orders_customer
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
+ADD CONSTRAINT fk_orders_employee
+    FOREIGN KEY (employee_id) REFERENCES Employees(employee_id);
 
 -- Confirm column data types and NOT NULL constraints were applied correctly
--- DESCRIBE Orders;
+DESCRIBE Orders;
 
 -- Verify the primary key and foreign key constraints were applied correctly on the Orders table
--- SHOW KEYS FROM Orders;
+SHOW KEYS FROM Orders;
+
+-- -------------------------------------------------------
+
+-- Inspect current structure of the OrderDetails table
+DESCRIBE OrderDetails;
+
+-- Check for duplicate (order_id, product_id) composite key values before adding the primary key
+SELECT order_id, product_id, COUNT(*) AS count
+FROM OrderDetails
+GROUP BY order_id, product_id
+HAVING COUNT(*) > 1;
+
+-- Check for NULL order_id or product_id before applying NOT NULL constraints
+SELECT *
+FROM OrderDetails
+WHERE order_id IS NULL
+   OR product_id IS NULL;
+
+-- Check for orphaned order_id values with no matching Orders record
+SELECT od.*
+FROM OrderDetails od
+LEFT JOIN Orders o
+    ON od.order_id = o.order_id
+WHERE o.order_id IS NULL;
+
+-- Check for orphaned product_id values with no matching Products record
+SELECT od.*
+FROM OrderDetails od
+LEFT JOIN Products p
+    ON od.product_id = p.product_id
+WHERE p.product_id IS NULL;
+
+-- Apply constraints: enforce NOT NULL, set composite primary key, and add foreign keys to Orders and Products
+ALTER TABLE OrderDetails
+MODIFY order_id INT NOT NULL,
+MODIFY product_id INT NOT NULL,
+MODIFY order_unit_price DECIMAL(10,2) NOT NULL,
+MODIFY quantity INT NOT NULL,
+MODIFY discount DECIMAL(5,2) NOT NULL,
+ADD PRIMARY KEY (order_id, product_id),
+ADD CONSTRAINT fk_orderdetails_order
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+ADD CONSTRAINT fk_orderdetails_product
+    FOREIGN KEY (product_id) REFERENCES Products(product_id);
+
+-- Confirm column data types and NOT NULL constraints were applied correctly
+DESCRIBE OrderDetails;
+
+-- Verify the composite primary key and foreign key constraints were applied correctly on the OrderDetails table
+SHOW KEYS FROM OrderDetails;
