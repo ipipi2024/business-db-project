@@ -1,0 +1,3 @@
+"Grants for IpuleDBA@localhost"
+"GRANT USAGE ON *.* TO `IpuleDBA`@`localhost`"
+"GRANT ALL PRIVILEGES ON `company_db`.* TO `IpuleDBA`@`localhost`"
