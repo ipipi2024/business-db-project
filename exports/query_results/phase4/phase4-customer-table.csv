@@ -1,0 +1,5 @@
+Field,Type,Null,Key,Default,Extra
+customer_id,char(5),NO,PRI,NULL,
+company_name,varchar(255),NO,,NULL,
+contact_name,varchar(255),YES,,NULL,
+contact_title,varchar(255),YES,,NULL,
