@@ -1,0 +1,10 @@
+Field,Type,Null,Key,Default,Extra
+product_id,int,NO,PRI,NULL,
+product_name,varchar(255),NO,,NULL,
+supplier_id,int,NO,MUL,NULL,
+category_id,int,NO,MUL,NULL,
+quantity_per_unit,varchar(100),YES,,NULL,
+units_in_stock,int,YES,,NULL,
+units_on_order,int,YES,,NULL,
+reorder_level,int,YES,,NULL,
+discontinued,tinyint(1),YES,,NULL,

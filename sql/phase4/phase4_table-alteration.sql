@@ -117,3 +117,58 @@ DESCRIBE Categories;
 
 -- Verify the primary key constraint was applied correctly on the Categories table
 SHOW KEYS FROM Categories;
+
+-- -------------------------------------------------------
+
+-- Inspect current structure of the Products table
+-- DESCRIBE Products;
+
+-- Check for duplicate product_id values before adding the primary key
+-- SELECT product_id, COUNT(*) AS count
+-- FROM Products
+-- GROUP BY product_id
+-- HAVING COUNT(*) > 1;
+
+-- Check for NULL product_id values before applying NOT NULL constraint
+-- SELECT *
+-- FROM Products
+-- WHERE product_id IS NULL;
+
+-- Check for NULL product_name, supplier_id, or category_id before applying NOT NULL constraints
+-- SELECT *
+-- FROM Products
+-- WHERE product_name IS NULL
+--    OR supplier_id IS NULL
+--    OR category_id IS NULL;
+
+-- Check for orphaned supplier_id values with no matching Suppliers record
+-- SELECT p.*
+-- FROM Products p
+-- LEFT JOIN Suppliers s
+--     ON p.supplier_id = s.supplier_id
+-- WHERE s.supplier_id IS NULL;
+
+-- Check for orphaned category_id values with no matching Categories record
+-- SELECT p.*
+-- FROM Products p
+-- LEFT JOIN Categories c
+--     ON p.category_id = c.category_id
+-- WHERE c.category_id IS NULL;
+
+-- Apply constraints: enforce NOT NULL, set primary key, and add foreign keys to Suppliers and Categories
+ALTER TABLE Products
+MODIFY product_id INT NOT NULL,
+MODIFY product_name VARCHAR(255) NOT NULL,
+MODIFY supplier_id INT NOT NULL,
+MODIFY category_id INT NOT NULL,
+ADD PRIMARY KEY (product_id),
+ADD CONSTRAINT fk_products_supplier
+    FOREIGN KEY (supplier_id) REFERENCES Suppliers(supplier_id),
+ADD CONSTRAINT fk_products_category
+    FOREIGN KEY (category_id) REFERENCES Categories(category_id);
+
+-- Confirm column data types and NOT NULL constraints were applied correctly
+DESCRIBE Products;
+
+-- Verify the primary key and foreign key constraints were applied correctly on the Products table
+SHOW KEYS FROM Products;
