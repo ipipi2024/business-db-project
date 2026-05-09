@@ -1,0 +1,50 @@
+# Database Project Setup Guide
+
+Follow these steps to set up the business database project on your local MySQL server.
+
+## Prerequisites
+
+- Latest version of MySQL Workbench
+- Latest version of MySQL Server
+
+## 1. Initial Setup
+
+1. Host a local MySQL Server and connect to it using MySQL Workbench.
+2. Navigate to the ```cleaned``` folder by following the path: ```business-db-project/data/cleaned```.
+3. Copy the file ```CompanyData_cleaned.csv``` and place it in your *secure_file_priv* folder.
+    - **Windows (default):** ```C:/ProgramData/MySQL/MySQL Server 8.0/Uploads```
+    - **Mac/Linux:** Run the query ```Show VARIABLES LIKE 'secure_file_priv';``` in MySQL to find the path.
+    (Note: If you're running Windows and don't know your *secure_file_priv* location, use the query above.)
+
+## 2. Running the SQL Scripts
+
+### Important Notes
+
+- (For either method) After running a script and no changes appear, click the refresh icon 🔄 in the top-right corner of the *Schemas* tab in the *Navigator* panel.
+- Phase 2 is the ER diagram and does not use a script.
+- Phase 5 has three separate scripts, run all of them.
+
+### Default Method
+
+1. Back in MySQL Workbench, look to the top-left and follow the path *File* > *Run SQL Script*.
+2. In the *Run SQL Script* pop-up, navigate to: ```business-db-project/sql/phase1```.
+3. Select ```phase1_load.sql``` and click *Open*, and in the next pop-up select *Run*.
+4. Repeat steps 1-3 for each script in its respective ```sql/phase#/``` folder.
+
+### Workaround
+
+If you encounter this error (or any others) preventing you from running SQL scripts:
+  
+"[WinError 32] The process cannot access the file because it is being used by another process."
+
+You will need to follow these steps as a workaround:
+
+1. Back in MySQL Workbench, look to the top-left and follow the path *File* > *Open SQL Script*.
+2. In the *Open SQL Script* pop-up, navigate to: ```business-db-project/sql/phase1```.
+3. Select ```phase1_load.sql``` and click *Open*. The script should appear in the *Query* panel.
+4. Click the lightning bolt⚡icon in the *Query* toolbar.
+5. Repeat steps 1-4 for each script in its respective ```sql/phase#/``` folder.
+
+## Conclusion
+
+If you're at this point, congratulations! You have successfully setup the database. To export the database, take a look at the documentation attached in the repo and follow the steps in phase 7.
