@@ -29,25 +29,25 @@ FLUSH PRIVILEGES;
 SHOW GRANTS FOR 'IpuleDBA'@'localhost';
 
 -- -------------------------------------------------------
--- ANALYST USER: IpuleAnalyst
+-- ANALYST USER: JacobAnalyst
 -- -------------------------------------------------------
 
 -- Create the Analyst user with read-only access
-CREATE USER 'IpuleAnalyst'@'localhost'
+CREATE USER 'JacobAnalyst'@'localhost'
 IDENTIFIED BY 'Analyst123!';
 
 -- Verify the Analyst user was created successfully
 SELECT user, host
 FROM mysql.user
-WHERE user = 'IpuleAnalyst';
+WHERE user = 'JacobAnalyst';
 
 -- Grant read-only SELECT privileges on the database to the Analyst user
 GRANT SELECT
 ON company_db.*
-TO 'IpuleAnalyst'@'localhost';
+TO 'JacobAnalyst'@'localhost';
 
 -- Apply the privilege changes immediately
 FLUSH PRIVILEGES;
 
 -- Confirm the privileges assigned to the Analyst user
-SHOW GRANTS FOR 'IpuleAnalyst'@'localhost';
+SHOW GRANTS FOR 'JacobAnalyst'@'localhost';
