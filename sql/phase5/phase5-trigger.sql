@@ -13,6 +13,7 @@ WHERE product_id = 1;
 DELIMITER //
 
 CREATE TRIGGER trg_reduce_stock_after_orderdetail_insert
+-- Trigger is activated here
 AFTER INSERT ON OrderDetails
 FOR EACH ROW
 BEGIN
